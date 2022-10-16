@@ -1,0 +1,1 @@
+{"mappings":"AAAA,OAAO,CAAC,GAAG,CAAC,oBAAoB,CAAC,CAAC","sources":["public/js/index.js"],"sourcesContent":["console.log('hello from parcel!');\n"],"names":[],"version":3,"file":"app.js.map","sourceRoot":"/"}

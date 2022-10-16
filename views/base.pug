@@ -1,0 +1,44 @@
+doctype html
+html
+  head
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      link(rel='stylesheet' href='/css/style.css')
+      link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      title Natours | #{title}
+
+  body 
+    // HEADER
+    include _header
+
+    // CONTENT
+    block content 
+      h1 This is a placeholder heading
+
+    // FOOTER
+    include _footer
+
+    //- script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js')
+    //- script(src='/js/mapbox.js')
+    //- script(src='/js/login.js')
+    //- script(src='/js/bundle.js') 
+    script(type='module' src='/js/bundled/index.js')
+    //- One file that will contain all the code that's in all the other files and all their dependencies
+
+
+
+
+  //- body 
+  //-   h1= tour
+  //-   h2= user.toUpperCase()
+  //-   p This is just some text
+
+  //-   - const x = 9;
+  //-   h2= 2 * x
+
+  // This will create a html comment (visible in html)
+  //- This will create a real comment
+  //- buffered code: simple JavaScript code can be run in the buffered code with '='
+  //- unbuffered code: the code that will not write anything to the output
