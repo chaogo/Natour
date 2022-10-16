@@ -8,7 +8,7 @@ class APIFeatures {
     const queryObj = { ...this.queryString }; // copy
     const excludeFields = ['page', 'sort', 'limit', 'fields'];
     excludeFields.forEach((el) => delete queryObj[el]);
-    console.log(this.queryString, queryObj);
+    // console.log(this.queryString, queryObj);
 
     // Advanced filtering
     let queryString = JSON.stringify(queryObj);
@@ -16,7 +16,7 @@ class APIFeatures {
       /\b(gte|gt|lte|lt)\b/g,
       (match) => `$${match}`
     ); // gte, gt, lte, lt; the regular expression
-    console.log(JSON.parse(queryString));
+    // console.log(JSON.parse(queryString));
     this.query = this.query.find(JSON.parse(queryString));
 
     return this;
