@@ -17,6 +17,7 @@ const userRouter = require('./routes/userRoutes'); // sub-app for users
 const reviewRouter = require('./routes/reviewRoutes'); //  sub-app for reviews
 const bookingRouter = require('./routes/bookingRoutes'); //  sub-app for reviews
 const viewRouter = require('./routes/viewRoutes'); //  sub-app for views
+const bookingController = require('./controllers/bookingController'); //  sub-app for views
 
 const app = express();
 
@@ -52,6 +53,12 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again in an hour!',
 });
 app.use('/api', limiter);
+
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookingCheckout
+); // the body of the request comes from webhook is not in json, so we need transform it into json with the parser
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' })); // middleware between reveiving req and sending res // everything is middleware in express
