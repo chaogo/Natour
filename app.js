@@ -19,6 +19,8 @@ const viewRouter = require('./routes/viewRoutes'); //  sub-app for views
 
 const app = express();
 
+app.enable('trust proxy');
+
 // use pug as template engine
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views')); // no need to think about slashes with path

@@ -11,7 +11,7 @@ const signToken = (id) =>
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
   const cookieOptions = {
     // store the jwt with cookie
@@ -19,8 +19,9 @@ const createSendToken = (user, statusCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
     httpOnly: true, // the cookie cannot be accessed or modified in any way by the browser. what the browser do is basically receiving the cookied and then send it automatically along with every request
+    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
   };
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true; // use https in the production mode
+  // if (process.env.NODE_ENV === 'production') cookieOptions.secure = true; // use https in the production mode
 
   res.cookie('jwt', token, cookieOptions);
 
@@ -49,7 +50,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const url = `${req.protocol}://${req.get('host')}/me`;
   await new Email(newUser, url).sendWelcome();
 
-  createSendToken(newUser, 201, res);
+  createSendToken(newUser, 201, req, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -93,7 +94,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
   // 3) If everything is ok, send token to client
   await User.updateOne({ email }, { loginConsecutiveAttempts: 0 });
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, req, res);
   // const token = signToken(user._id); //  the difference between the token here and the token of signup is only the iat(create at). multiple tokens work at the same time??
 });
 
@@ -265,7 +266,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // 3) UpdatechangePasswordAt property for the user: pre hook in userModel
 
   // 4) Log the user in, send JWT
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, req, res);
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
@@ -284,5 +285,5 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   // User.findByIdAndUpdate will not work as intended! the instance method (pre hooks) and validators will not run.
 
   // 4) Log user in send JWT
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, req, res);
 });
