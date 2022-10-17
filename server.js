@@ -45,4 +45,10 @@ process.on('unhandledRejection', (err) => {
   });
 });
 
-// console.log(x); // uncaught exception
+// Heroku every 24 hours will shut down our app by sending the sigterm
+process.on('SIGTERM', () => {
+  console.log('👋 SIGTERM RECEIVED. Shutting down gracefully');
+  server.close(() => {
+    console.log('process terminated.');
+  });
+});
