@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -26,6 +27,11 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views')); // no need to think about slashes with path
 
 // 1) GLOBAL MIDDLEWARE: apply for every route -> take such global middleware before any "route handler"(local middleware)
+// Implement CORS
+app.use(cors()); // add some headers relating CORS on the response; only for simply request of get, post
+
+app.options('*', cors()); // options: including complex request of put, patch, delete, ... To allow all the actions from cross-origin requests.
+
 // Serving static file
 app.use(express.static(path.join(__dirname, 'public')));
 
