@@ -7,11 +7,17 @@ Natours offers a range of adventure tours. It's designed for a user-friendly exp
 - **User Account Management**: Features include user registration, secure login, authorization, password reset functionality, and the ability to customize profile pictures.
   <img src="image-3.png" alt="Alt text" width="50%"/>
 - **Tour Exploration and Booking**: Offers a diverse selection of adventure tours, each with comprehensive details. The interface is visually appealing and intuitive, enhancing user navigation.
+
   - **Interactive Maps**: Each tour displays its route on an interactive map, providing a clear overview of the journey.
+
     <img src="image.png" alt="Alt text" width="50%"/>
+
   - **Booking and Payment**: Users can easily book their chosen tour and complete payments securely online.
+
     <img src="image-1.png" alt="Alt text" width="50%"/>
+
   - **reviews and bookings management**: Allows users to manage their bookings and reviews.
+
     <img src="image-2.png" alt="Alt text" width="50%"/>
 
 ## Technologies Used
