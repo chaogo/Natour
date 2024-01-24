@@ -1,6 +1,6 @@
-# Natours
+# Natour
 
-Natours offers a range of adventure tours. It's designed for a user-friendly experience in exploring and booking tours. Check it out: https://tours-chao.herokuapp.com/
+Natour offers a range of adventure tours. It's designed for a user-friendly experience in exploring and booking tours. Check it out: https://tours-chao.herokuapp.com/
 
 ## Features
 
